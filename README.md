@@ -5,7 +5,7 @@ Here is a small script to manage several golang versions in Ubuntu.
 ## How to install
 
 ```sh
-
+wget 'https://raw.githubusercontent.com/fulldump/gvm/master/gvm.sh'; chmod +x gvm.sh; ./gvm.sh install
 ```
 
 ## How to use
