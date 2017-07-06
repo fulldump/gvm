@@ -1,9 +1,12 @@
 #!/bin/bash
+ARCH=${ARCH:=amd64}
 
 SCRIPT_FILENAME=`readlink -f $0`
 SCRIPT_DIR=`dirname $SCRIPT_FILENAME`
 
 COMMAND=$1
+COMMAND=${COMMAND:=help}
+
 
 if [ "version" == $COMMAND ] ; then
 	go version
@@ -23,7 +26,7 @@ if [ "set" == $COMMAND ] ; then
 	cd "$SCRIPT_DIR"
 
 	VERSION=$2
-	FILENAME="go${VERSION}.linux-amd64.tar.gz"
+	FILENAME="go${VERSION}.linux-${ARCH}.tar.gz"
 
 	# Check if folder exists
 	DIR="$SCRIPT_DIR/$VERSION"
@@ -58,13 +61,18 @@ if [ "install" == $COMMAND ] ; then
 	exit
 fi
 
-echo "Invalid command '$COMMAND'"
+if [ "help" == $COMMAND ] ; then
+	echo "A command should be provided: gvm <command>"
+else
+	echo "Invalid command '$COMMAND'"
+fi
 
 help=$(cat <<'ZZZZZZHEREDOC'
 version	Get current version
 list	See all local available versions
-set	Set go version
+set 	Set go version
 install	Install this script
+help	Show this help
 ZZZZZZHEREDOC
 )
 
