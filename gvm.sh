@@ -45,7 +45,9 @@ if [ "set" == $COMMAND ] ; then
 	fi
 
 	# Set links
+	rm "$SCRIPT_DIR/go" >&- 2>&-
 	ln -fs "$SCRIPT_DIR/$2/go/bin/go" "$SCRIPT_DIR/go"
+	rm "$SCRIPT_DIR/.goroot" >&- 2>&-
 	ln -fs "$SCRIPT_DIR/$2/go" "$SCRIPT_DIR/.goroot"
 
 	exit
